@@ -1,6 +1,6 @@
 # StopWatch VUE Composition API
 
-![Preview](https://github.com/ArvidAnderson/StopWatch-Vue/blob/main/preview.PNG)
+![Preview](https://github.com/ArvidAnderson/StopWatch-Vue-Composition/blob/main/preview.PNG)
 
 ## Features
 
