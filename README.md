@@ -1,4 +1,4 @@
-# StopWatch VUE Composition API
+# StopWatch Vue Composition API
 
 ![Preview](https://github.com/ArvidAnderson/StopWatch-Vue-Composition/blob/main/preview.PNG)
 
