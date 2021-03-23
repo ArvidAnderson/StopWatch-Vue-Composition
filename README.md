@@ -1,5 +1,7 @@
 # StopWatch VUE Composition API
 
+![Preview](https://github.com/ArvidAnderson/StopWatch-Vue/blob/main/preview.PNG)
+
 ## Features
 
 - Start, Stop, Clear, Lap
