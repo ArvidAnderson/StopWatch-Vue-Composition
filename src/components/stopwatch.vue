@@ -2,8 +2,8 @@
   <div class="flex min-h-screen">
     <div class="m-auto">
       <div class="text-center p-5 text-4xl">
-        <span v-if="hours > 0">{{ convertZero(hours) + ":" }}</span>
-        <span>{{ convertZero(minutes) + ":" }}</span>
+        <span v-if="hours > 0">{{ convertZero(hours) + ':' }}</span>
+        <span>{{ convertZero(minutes) + ':' }}</span>
         <span>{{ convertZero(seconds.toFixed(0)) }}</span>
       </div>
       <div>
@@ -20,14 +20,14 @@
           Stop
         </button>
         <button
-          v-if="active != true"
+          v-if="active != true" 
           v-on:click="clearStopWatch()"
           class="focus:outline-none text-white bg-blue-500 p-4 py-3 px-6 rounded-full"
         >
           Clear
         </button>
         <button
-          v-if="active == true"
+          v-if="active == true" 
           v-on:click="lapStopWatch()"
           class="focus:outline-none text-white bg-blue-500 p-4 py-3 px-6 rounded-full"
         >
@@ -35,18 +35,12 @@
         </button>
       </div>
       <div class="mt-5 text-center text-xl">
-        <ul>
-          <li v-for="(lap, index) in laps" :key="index" class="m-3">
-            <span v-on:click="laps.splice(index, 1)">
-              {{
-                convertZero(lap.hours) +
-                ":" +
-                convertZero(lap.minutes) +
-                ":" +
-                convertZero(lap.seconds.toFixed(0))
-              }}
-            </span>
-          </li>
+          <ul>
+            <li v-for="(lap, index) in laps" :key="index" class="m-3">
+              <span v-on:click="laps.splice(index, 1)">
+                {{convertZero(lap.hours) + ':' + convertZero(lap.minutes) + ':' + convertZero(lap.seconds.toFixed(0))}}
+              </span>
+            </li>
         </ul>
       </div>
     </div>
@@ -54,12 +48,15 @@
 </template>
 
 <script>
+
+import { ref } from "vue";
+
 export default {
   name: "stopwatch",
-  setup({ ref }) {
-    var seconds = ref(null);
-    var minutes = ref(null);
-    var hours = ref(null);
+  setup() {
+    var seconds = ref(0);
+    var minutes = ref(0);
+    var hours = ref(0);
     var active = ref(false);
     var laps = ref([]);
     var interval = ref(null);
@@ -78,35 +75,35 @@ export default {
     }
 
     function startStopWatch() {
-      active = true;
+      active.value = true;
     }
 
     function stopStopWatch() {
-      active = false;
+      active.value = false;
     }
 
     function clearStopWatch() {
-      hours = 0;
-      minutes = 0;
-      seconds = 0;
+      hours.value = 0;
+      minutes.value = 0;
+      seconds.value = 0;
     }
 
     function lapStopWatch() {
-      laps.push({ hours: hours, minutes: minutes, seconds: seconds });
+      laps.value.push({ hours: hours.value, minutes: minutes.value, seconds: seconds.value });
       console.log(laps);
     }
 
     function updateStopWatch() {
-      if (active == true) {
-        seconds += 0.01;
+      if (active.value == true) {
+        seconds.value += 0.01;
       }
-      if (seconds >= 60) {
-        seconds = 0;
-        minutes += 1;
+      if (seconds.value >= 60) {
+        seconds.value = 0;
+        minutes.value += 1;
       }
-      if (minutes >= 60) {
-        minutes = 0;
-        hours++;
+      if (minutes.value >= 60) {
+        minutes.value = 0;
+        hours.value++;
       }
     }
 
@@ -127,6 +124,7 @@ export default {
   },
 }
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
